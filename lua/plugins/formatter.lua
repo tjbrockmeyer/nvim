@@ -18,6 +18,8 @@ return {
 				lua = { "stylua" },
 				python = { "isort", "black" },
 				go = { "gofmt" },
+				templ = { "templ" },
+				sql = { "sleek" },
 			},
 			format_on_save = {
 				lsp_fallback = true,

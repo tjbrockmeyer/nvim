@@ -36,6 +36,9 @@ return {
 				"rust",
 				"vimdoc",
 				"go",
+				"templ",
+				"hurl",
+				"bash",
 			},
 			incremental_selection = {
 				enable = true,

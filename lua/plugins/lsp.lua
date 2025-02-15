@@ -58,7 +58,7 @@ return {
 			vim.keymap.set("n", "<A-r>", function()
 				vim.lsp.buf.rename()
 			end, vim.tbl_deep_extend("force", opts, { desc = "LSP Rename" }))
-			vim.keymap.set("i", "<C-h>", function()
+			vim.keymap.set("i", "<C-k>", function()
 				vim.lsp.buf.signature_help()
 			end, vim.tbl_deep_extend("force", opts, { desc = "LSP Signature Help" }))
 		end)
