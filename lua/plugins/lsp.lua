@@ -61,6 +61,12 @@ return {
 			vim.keymap.set("i", "<C-k>", function()
 				vim.lsp.buf.signature_help()
 			end, vim.tbl_deep_extend("force", opts, { desc = "LSP Signature Help" }))
+			vim.keymap.set(
+				"n",
+				"<leader>lr",
+				"<cmd>LspRestart<cr>",
+				vim.tbl_deep_extend("force", opts, { desc = "LSP Restart" })
+			)
 		end)
 
 		require("mason").setup({})
