@@ -26,7 +26,7 @@ local load_lazy = function()
 			{ import = "plugins" },
 		},
 		-- automatically check for plugin updates
-		checker = { enabled = true },
+		checker = { enabled = true, notify = false },
 	})
 end
 

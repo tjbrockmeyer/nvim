@@ -55,7 +55,7 @@ return {
 			--vim.keymap.set("n", "<leader>vrr", function()
 			--vim.lsp.buf.references()
 			--end, vim.tbl_deep_extend("force", opts, { desc = "LSP References" }))
-			vim.keymap.set("n", "<A-r>", function()
+			vim.keymap.set("n", "<leader>r", function()
 				vim.lsp.buf.rename()
 			end, vim.tbl_deep_extend("force", opts, { desc = "LSP Rename" }))
 			vim.keymap.set("i", "<C-k>", function()
@@ -78,7 +78,6 @@ return {
 				"lua_ls",
 				"jsonls",
 				"html",
-				--"pylsp",
 				"dockerls",
 				"docker_compose_language_service",
 				"bashls",
@@ -86,7 +85,6 @@ return {
 				"gopls",
 				"templ",
 				"cssls",
-				"denols",
 				"sqlls",
 			},
 			handlers = {
@@ -167,12 +165,10 @@ return {
 			mapping = cmp.mapping.preset.insert({
 				["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
 				["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
+				["<Tab>"] = cmp.mapping.confirm({ select = true }),
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<C-f>"] = cmp_action.luasnip_jump_forward(),
 				["<C-b>"] = cmp_action.luasnip_jump_backward(),
-				["<Tab>"] = cmp_action.luasnip_supertab(),
-				["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
 			}),
 			window = {
 				completion = cmp.config.window.bordered(),
