@@ -1,64 +1,56 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = { "BufReadPre", "BufNewFile" },
+	lazy = false,
 	build = ":TSUpdate",
-	dependencies = {
-		"windwp/nvim-ts-autotag",
-	},
 	config = function()
-		local treesitter = require("nvim-treesitter.configs")
+		local ts = require("nvim-treesitter")
+		local parsers = {
+			"json",
+			"javascript",
+			"typescript",
+			"tsx",
+			"yaml",
+			"html",
+			"css",
+			"markdown",
+			"markdown_inline",
+			"bash",
+			"lua",
+			"vim",
+			"dockerfile",
+			"gitignore",
+			"c",
+			"rust",
+			"vimdoc",
+			"go",
+			"templ",
+			"hurl",
+			"bash",
+		}
 
-		treesitter.setup({
-			highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = false,
-			},
-			indent = { enable = true },
-			autotag = {
-				enable = true,
-			},
-			ensure_installed = {
-				"json",
-				"javascript",
-				"typescript",
-				"tsx",
-				"yaml",
-				"html",
-				"css",
-				"markdown",
-				"markdown_inline",
-				"bash",
-				"lua",
-				"vim",
-				"dockerfile",
-				"gitignore",
-				"c",
-				"rust",
-				"vimdoc",
-				"go",
-				"templ",
-				"hurl",
-				"bash",
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<C-space>",
-					node_incremental = "<C-space>",
-					scope_incremental = false,
-					node_decremental = "<bs>",
-				},
-			},
-			rainbow = {
-				enable = true,
-				disable = { "html" },
-				extended_mode = false,
-				max_file_lines = nil,
-			},
-			context_commentstring = {
-				enable = true,
-				enable_autocmd = false,
-			},
+		for _, parser in ipairs(parsers) do
+			ts.install(parser)
+		end
+
+		-- Not every tree-sitter parser is the same as the file type detected
+		-- So the patterns need to be registered more cleverly
+		local patterns = {}
+		for _, parser in ipairs(parsers) do
+			local parser_patterns = vim.treesitter.language.get_filetypes(parser)
+			for _, pp in pairs(parser_patterns) do
+				table.insert(patterns, pp)
+			end
+		end
+
+		vim.treesitter.language.register("groovy", "Jenkinsfile")
+		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		vim.wo[0][0].foldmethod = "expr"
+
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = patterns,
+			callback = function()
+				vim.treesitter.start()
+			end,
 		})
 	end,
 }
