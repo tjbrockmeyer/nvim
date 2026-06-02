@@ -18,7 +18,6 @@ return {
 		quickfile = { enabled = true },
 		rename = { enabled = true },
 		scope = { enabled = true },
-		scroll = { enabled = true },
 		words = { enabled = true },
 		zen = { enabled = true },
 	},
