@@ -1,5 +1,5 @@
 return {
-	dir = "~/code/wave.nvim",
+	"tjbrockmeyer/wave.nvim",
 	name = "wave.nvim",
 	dependencies = { "nvim-treesitter/nvim-treesitter" },
 	config = function()
