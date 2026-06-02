@@ -24,6 +24,8 @@ return {
 	config = function()
 		local lsp = require("lsp-zero")
 
+		vim.lsp.config("lua_ls", lsp.nvim_lua_ls())
+
 		lsp.on_attach(function(client, bufnr)
 			local opts = { buffer = bufnr, remap = false }
 
@@ -85,13 +87,6 @@ return {
 				"templ",
 				"cssls",
 				"sqlls",
-			},
-			handlers = {
-				lsp.default_setup,
-				lua_ls = function()
-					local lua_opts = lsp.nvim_lua_ls()
-					require("lspconfig").lua_ls.setup(lua_opts)
-				end,
 			},
 		})
 
