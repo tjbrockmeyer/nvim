@@ -12,7 +12,7 @@ return {
 			wave.run("auto_snippet")
 		end, { desc = "Handwave a code snippet" })
 		vim.keymap.set("n", "<leader>wc", function()
-			wave.run("auto_snippet")
+			wave.run("cancel")
 		end, { desc = "Cancel a handwave job" })
 	end,
 }
