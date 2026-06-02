@@ -36,11 +36,14 @@ local load_settings = function()
 		softtabstop = -1,
 		shiftwidth = 0,
 	}
-	
+
 	for k, v in pairs(global_local) do
 		vim.o[k] = v
 	end
+
+	-- copy to clipboard
+	vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+	vim.keymap.set("n", "<leader>Y", [["+Y]])
 end
 
 load_settings()
-
